@@ -4,45 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharika Rajan - Full-Stack Developer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="professional-enhancements.css">
-    <link rel="stylesheet" href="advanced-3d-animations.css">
+    <link rel="stylesheet" href="modern-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- System Initialization Loader -->
-    <div id="system-loader" class="system-loader">
-        <div class="loader-content">
-            <div class="loader-terminal">
-                <div class="terminal-line"><span class="prompt">></span> <span class="text">Initializing portfolio environment...</span></div>
-                <div class="terminal-line"><span class="prompt">></span> <span class="text">Loading projects...</span></div>
-                <div class="terminal-line"><span class="prompt">></span> <span class="text">Analyzing skill set...</span></div>
-                <div class="terminal-line success"><span class="prompt">✓</span> <span class="text">System ready</span></div>
-            </div>
+    <!-- Modern Gradient Mesh Background -->
+    <div class="gradient-mesh-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        <div class="grid-overlay"></div>
+        <!-- 3D Floating Particles -->
+        <div class="floating-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+            <div class="particle particle-6"></div>
+            <div class="particle particle-7"></div>
+            <div class="particle particle-8"></div>
         </div>
     </div>
 
-    <!-- Global 3D Effects -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-        <div class="shape shape-5"></div>
-        <div class="shape shape-6"></div>
+    <!-- System Initialization Loader -->
+    <div id="system-loader" class="system-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
     </div>
-    <canvas id="particles-canvas"></canvas>
 
     <!-- Main Content -->
     <div id="main-content" class="main-content">
     
     <!-- Hero Section -->
     <section id="hero" class="hero">
+        <!-- Background Layer: Gradient Mesh -->
         <div class="hero-gradient"></div>
-        <div class="container hero-content">
-            <div class="hero-text">
+        
+        <!-- Mid Layer: Floating Glass Cards -->
+        <div class="hero-depth-layers">
+            <div class="glass-card glass-card-1" data-depth="0.2"></div>
+            <div class="glass-card glass-card-2" data-depth="0.3"></div>
+            <div class="glass-card glass-card-3" data-depth="0.15"></div>
+            <div class="glass-card glass-card-4" data-depth="0.25"></div>
+            <div class="glass-card glass-card-5" data-depth="0.18"></div>
+        </div>
+        
+        <!-- Foreground Layer: Content -->
+        <div class="container hero-content" data-depth="0.1">
+            <div class="hero-text" id="heroText">
                 <div class="context-label">Engineering Portfolio</div>
                 <h1 class="hero-name">Sharika Rajan</h1>
                 <p class="hero-role">Full-Stack Developer</p>
@@ -94,378 +109,301 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - 3D Wall Showcase -->
     <section id="projects" class="section projects" data-depth="400">
         <div class="container">
             <div class="context-label">Portfolio</div>
             <h2 class="section-title">Projects</h2>
             <p class="section-subtitle">Real-world systems built for impact</p>
-            
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-project="1">
-                    <div class="project-meta">Hackathon Winning Solution</div>
-                    <div class="project-header">
-                        <h3 class="project-title">Event Ticketing & Registration System</h3>
-                        <span class="project-badge winner">Winner</span>
-                    </div>
-                    <p class="project-role">Full-Stack Development</p>
-                    <p class="project-problem">How do you handle thousands of concurrent bookings without bottlenecks?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">WebSockets</span>
-                    </div>
-                    <p class="project-impact">→ Enabled real-time event management for large-scale audiences</p>
-                </div>
+        </div>
+        
+        <!-- 3D Wall Container -->
+        <div class="projects-3d-wall" id="projectsWall">
+            <div class="projects-wall-inner">
+                <div class="projects-track" id="projectsTrack">
+                    <div class="projects-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card" data-project="1">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">Hackathon Winner</div>
+                            <div class="project-header">
+                                <h3 class="project-title">Event Ticketing System</h3>
+                                <span class="project-badge winner">Winner</span>
+                            </div>
+                            <p class="project-role">Full-Stack Development</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            <p class="project-impact">Real-time booking for 10K+ users</p>
+                        </div>
 
-                <!-- Project 2 -->
-                <div class="project-card" data-project="2">
-                    <div class="project-header">
-                        <h3 class="project-title">VEXTA AI – Intelligent IDP System</h3>
-                        <span class="project-badge winner">Winner</span>
-                    </div>
-                    <p class="project-role">AI & Full-Stack Development</p>
-                    <p class="project-problem">Can AI reduce manual document processing time by 80%?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">FastAPI</span>
-                    </div>
-                    <p class="project-impact">→ Automated IDP generation with intelligent document processing</p>
-                </div>
+                        <!-- Project 2 -->
+                        <div class="project-card" data-project="2">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">Smart India Hackathon</div>
+                            <div class="project-header">
+                                <h3 class="project-title">VEXTA AI</h3>
+                                <span class="project-badge winner">Winner</span>
+                            </div>
+                            <p class="project-role">AI & Full-Stack</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">FastAPI</span>
+                            </div>
+                            <p class="project-impact">80% faster document processing</p>
+                        </div>
 
-                <!-- Project 3 -->
-                <div class="project-card" data-project="3">
-                    <div class="project-header">
-                        <h3 class="project-title">PhishCatcher – Phishing URL Detection</h3>
-                    </div>
-                    <p class="project-role">Machine Learning & Security</p>
-                    <p class="project-problem">How do you protect users from evolving phishing attacks in real-time?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">ML Models</span>
-                    </div>
-                    <p class="project-impact">→ Detects malicious URLs with high accuracy using ML algorithms</p>
-                </div>
+                        <!-- Project 3 -->
+                        <div class="project-card" data-project="3">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">Security</div>
+                            <div class="project-header">
+                                <h3 class="project-title">PhishCatcher</h3>
+                            </div>
+                            <p class="project-role">Machine Learning</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Scikit-learn</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <p class="project-impact">Real-time phishing detection</p>
+                        </div>
 
-                <!-- Project 4 -->
-                <div class="project-card project-hidden" data-project="4">
-                    <div class="project-header">
-                        <h3 class="project-title">Travel Explorer</h3>
-                        <span class="project-badge frontend">Frontend Only</span>
-                    </div>
-                    <p class="project-role">Frontend Development</p>
-                    <p class="project-problem">Can a travel interface feel immersive without heavy media assets?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">CSS Animations</span>
-                        <span class="tech-tag">Responsive Design</span>
-                    </div>
-                    <p class="project-impact">→ Interactive travel planning with smooth UX and clean aesthetics</p>
-                </div>
+                        <!-- Project 4 -->
+                        <div class="project-card" data-project="4">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">Frontend</div>
+                            <div class="project-header">
+                                <h3 class="project-title">Travel Explorer</h3>
+                            </div>
+                            <p class="project-role">Frontend Development</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">CSS Animations</span>
+                            </div>
+                            <p class="project-impact">Immersive travel experience</p>
+                        </div>
 
-                <!-- Project 5 -->
-                <div class="project-card project-hidden" data-project="5">
-                    <div class="project-header">
-                        <h3 class="project-title">CodeAlpha Communication App</h3>
-                    </div>
-                    <p class="project-role">Full-Stack Development</p>
-                    <p class="project-problem">How do you build real-time messaging that feels instant?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Socket.io</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express</span>
-                    </div>
-                    <p class="project-impact">→ Real-time chat with minimal latency and clean architecture</p>
-                </div>
+                        <!-- Project 5 -->
+                        <div class="project-card" data-project="5">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">Real-Time</div>
+                            <div class="project-header">
+                                <h3 class="project-title">Communication App</h3>
+                            </div>
+                            <p class="project-role">Full-Stack Development</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Socket.io</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                            <p class="project-impact">Instant messaging architecture</p>
+                        </div>
 
-                <!-- Project 6 -->
-                <div class="project-card project-hidden" data-project="6">
-                    <div class="project-header">
-                        <h3 class="project-title">CodeAlpha E-Commerce Store</h3>
+                        <!-- Project 6 -->
+                        <div class="project-card" data-project="6">
+                            <div class="card-shine"></div>
+                            <div class="project-meta">E-Commerce</div>
+                            <div class="project-header">
+                                <h3 class="project-title">Online Store</h3>
+                            </div>
+                            <p class="project-role">Full-Stack Development</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Redux</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                            <p class="project-impact">Complete payment integration</p>
+                        </div>
                     </div>
-                    <p class="project-role">Full-Stack Development</p>
-                    <p class="problem">What makes an online store feel trustworthy and fast?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Redux</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                    <p class="project-impact">→ Complete e-commerce solution with cart, payments, and inventory management</p>
-                </div>
-
-                <!-- Project 7 -->
-                <div class="project-card project-hidden" data-project="7">
-                    <div class="project-header">
-                        <h3 class="project-title">Student Management System</h3>
-                    </div>
-                    <p class="project-role">Full-Stack Development</p>
-                    <p class="project-problem">How do you manage complex academic data with clarity?</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">REST API</span>
-                    </div>
-                    <p class="project-impact">→ Streamlined student data management with intuitive dashboard</p>
                 </div>
             </div>
         </div>
         
         <div class="container">
             <div class="view-more-container">
-                <button id="viewMoreBtn" class="btn btn-primary view-more-btn">
-                    <span class="view-more-text">View More Projects</span>
-                    <svg class="view-more-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </button>
+                <p class="scroll-hint">Scroll or drag to explore projects</p>
             </div>
         </div>
     </section>
+
+    <!-- Case Study Modal -->
+    <div class="case-study-modal" id="caseStudyModal">
+        <button class="case-study-close" id="closeCaseStudy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="case-study-content" id="caseStudyContent">
+            <!-- Content injected by JS -->
+        </div>
+    </div>
 
     <!-- Skills Section -->
     <section id="skills" class="section skills" data-depth="600">
         <div class="container">
             <div class="context-label">Analysis Mode</div>
             <h2 class="section-title">Skills</h2>
-            <p class="section-subtitle">Skill Level Approximation — Measured expertise</p>
+            <p class="section-subtitle">Role-based expertise for real-world impact</p>
             
-            <div class="skills-dashboard">
-                <div class="skills-categories">
-                    <button class="skill-category active" data-category="frontend">Frontend</button>
-                    <button class="skill-category" data-category="backend">Backend & Full Stack</button>
-                    <button class="skill-category" data-category="tools">Tools</button>
-                    <button class="skill-category" data-category="others">Others</button>
-                    <button class="skill-category" data-category="soft">Soft Skills</button>
+            <div class="roles-showcase">
+                <!-- Role Navigation -->
+                <div class="role-nav">
+                    <button class="role-tab active" data-role="fullstack">
+                        <span class="role-tab-icon">⚡</span>
+                        <span class="role-tab-text">Full-Stack Developer</span>
+                    </button>
+                    <button class="role-tab" data-role="aiml">
+                        <span class="role-tab-icon">🤖</span>
+                        <span class="role-tab-text">AI/ML Engineer</span>
+                    </button>
+                    <button class="role-tab" data-role="frontend">
+                        <span class="role-tab-icon">🎨</span>
+                        <span class="role-tab-text">Frontend Specialist</span>
+                    </button>
                 </div>
                 
-                <div class="skills-display">
-                    <div class="skills-list active" data-category="frontend">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">React & React Hooks</span>
-                                <span class="skill-level">Advanced</span>
+                <!-- Role Cards Container -->
+                <div class="role-cards-container">
+                    <!-- Full-Stack Developer -->
+                    <div class="role-card active" data-role="fullstack">
+                        <div class="role-header">
+                            <div class="role-title-group">
+                                <h3 class="role-title">Full-Stack Developer</h3>
+                                <span class="role-level">Primary Role</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
-                            </div>
+                            <div class="role-badge">2× Hackathon Winner</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">JavaScript (ES6+)</span>
-                                <span class="skill-level">Advanced</span>
+                        
+                        <div class="role-content">
+                            <div class="role-section">
+                                <h4>What I Do</h4>
+                                <p>Build end-to-end web applications from database design to deployment. I handle both client-facing interfaces and server-side logic with a focus on scalability and real-time features.</p>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
+                            
+                            <div class="role-section">
+                                <h4>Key Responsibilities</h4>
+                                <ul class="responsibility-list">
+                                    <li>Design and implement RESTful APIs with Node.js & FastAPI</li>
+                                    <li>Build responsive React applications with state management</li>
+                                    <li>Set up databases (MongoDB, PostgreSQL) and optimize queries</li>
+                                    <li>Implement real-time features using WebSockets</li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">HTML & CSS</span>
-                                <span class="skill-level">Expert</span>
+                            
+                            <div class="role-section">
+                                <h4>Tech Stack</h4>
+                                <div class="role-skills">
+                                    <span class="role-skill">React</span>
+                                    <span class="role-skill">Node.js</span>
+                                    <span class="role-skill">Express</span>
+                                    <span class="role-skill">MongoDB</span>
+                                    <span class="role-skill">PostgreSQL</span>
+                                    <span class="role-skill">WebSockets</span>
+                                    <span class="role-skill">REST APIs</span>
+                                    <span class="role-skill">Git</span>
+                                </div>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Responsive Design</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Redux & State Management</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skills-list" data-category="backend">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Node.js & Express</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Python & FastAPI</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">MongoDB</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">PostgreSQL & MySQL</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">REST API Design</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">WebSockets & Real-time</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 75%"></div>
+                            
+                            <div class="role-proof">
+                                <span class="proof-label">Proven at</span>
+                                <span class="proof-text">Naan Mudhalvan Hackathon — Built Event Ticketing System handling 10K+ concurrent users</span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="skills-list" data-category="tools">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Git & GitHub</span>
-                                <span class="skill-level">Advanced</span>
+                    
+                    <!-- AI/ML Engineer -->
+                    <div class="role-card" data-role="aiml">
+                        <div class="role-header">
+                            <div class="role-title-group">
+                                <h3 class="role-title">AI/ML Engineer</h3>
+                                <span class="role-level">Secondary Role</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
-                            </div>
+                            <div class="role-badge">SIH 2025 Winner</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">VS Code</span>
-                                <span class="skill-level">Expert</span>
+                        
+                        <div class="role-content">
+                            <div class="role-section">
+                                <h4>What I Do</h4>
+                                <p>Develop machine learning solutions for real-world problems. From data preprocessing to model deployment, I build AI systems that automate complex tasks and provide actionable insights.</p>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 90%"></div>
+                            
+                            <div class="role-section">
+                                <h4>Key Responsibilities</h4>
+                                <ul class="responsibility-list">
+                                    <li>Train and fine-tune ML models for classification & NLP tasks</li>
+                                    <li>Build data pipelines for preprocessing and feature engineering</li>
+                                    <li>Deploy models as APIs using FastAPI & Flask</li>
+                                    <li>Implement security-focused ML (phishing detection, anomaly detection)</li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Postman & API Testing</span>
-                                <span class="skill-level">Proficient</span>
+                            
+                            <div class="role-section">
+                                <h4>Tech Stack</h4>
+                                <div class="role-skills">
+                                    <span class="role-skill">Python</span>
+                                    <span class="role-skill">TensorFlow</span>
+                                    <span class="role-skill">Scikit-learn</span>
+                                    <span class="role-skill">Pandas</span>
+                                    <span class="role-skill">FastAPI</span>
+                                    <span class="role-skill">NLP</span>
+                                    <span class="role-skill">XGBoost</span>
+                                </div>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Docker Basics</span>
-                                <span class="skill-level">Familiar</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skills-list" data-category="others">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Machine Learning (Python)</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">TensorFlow & Scikit-learn</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">System Design</span>
-                                <span class="skill-level">Proficient</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Problem Solving</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
+                            
+                            <div class="role-proof">
+                                <span class="proof-label">Proven at</span>
+                                <span class="proof-text">Smart India Hackathon 2025 — Built VEXTA AI achieving 80% faster document processing</span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="skills-list" data-category="soft">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Hackathon Experience</span>
-                                <span class="skill-level">2× Winner</span>
+                    
+                    <!-- Frontend Specialist -->
+                    <div class="role-card" data-role="frontend">
+                        <div class="role-header">
+                            <div class="role-title-group">
+                                <h3 class="role-title">Frontend Specialist</h3>
+                                <span class="role-level">Core Competency</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 95%"></div>
-                            </div>
+                            <div class="role-badge">UI/UX Focus</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Team Collaboration</span>
-                                <span class="skill-level">Advanced</span>
+                        
+                        <div class="role-content">
+                            <div class="role-section">
+                                <h4>What I Do</h4>
+                                <p>Create pixel-perfect, performant user interfaces that feel intuitive and delightful. I focus on accessibility, animations, and delivering smooth user experiences across all devices.</p>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
+                            
+                            <div class="role-section">
+                                <h4>Key Responsibilities</h4>
+                                <ul class="responsibility-list">
+                                    <li>Build component-based UIs with React & modern CSS</li>
+                                    <li>Implement smooth animations and micro-interactions</li>
+                                    <li>Ensure responsive design and cross-browser compatibility</li>
+                                    <li>Optimize performance (lazy loading, code splitting)</li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Fast Prototyping</span>
-                                <span class="skill-level">Advanced</span>
+                            
+                            <div class="role-section">
+                                <h4>Tech Stack</h4>
+                                <div class="role-skills">
+                                    <span class="role-skill">React</span>
+                                    <span class="role-skill">JavaScript ES6+</span>
+                                    <span class="role-skill">CSS3/Sass</span>
+                                    <span class="role-skill">HTML5</span>
+                                    <span class="role-skill">Redux</span>
+                                    <span class="role-skill">Responsive Design</span>
+                                    <span class="role-skill">Animations</span>
+                                </div>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Clear Communication</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress: 80%"></div>
+                            
+                            <div class="role-proof">
+                                <span class="proof-label">Example</span>
+                                <span class="proof-text">This portfolio — 3D animations, glassmorphism, and smooth interactions built from scratch</span>
                             </div>
                         </div>
                     </div>
@@ -564,13 +502,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Sharika Rajan. Built with clarity and purpose.</p>
-        </div>
-    </footer>
     
     <!-- Closure Section -->
     <section class="closure-section">
@@ -582,10 +513,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sharika Rajan. Built with clarity and purpose.</p>
+        </div>
+    </footer>
     
     </div>
     <!-- End Main Content -->
 
-    <script src="script.js"></script>
+    <script src="modern-script.js"></script>
 </body>
 </html>
