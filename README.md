@@ -1,99 +1,43 @@
-# Sharika Rajan - Portfolio Website
+# Sharika Rajan | 3D Futuristic Portfolio
 
-A modern, high-end portfolio website built with clarity, credibility, and real-world impact in mind.
+An ultra-premium, interactive 3D portfolio website showcasing my skills, experience, and projects as a Full Stack Software Engineer. Built with modern web technologies, this portfolio features a cyberpunk aesthetic, glassmorphism UI, smooth cinematic scrolling, and dynamic 3D backgrounds.
 
-## 🎯 Features
+## 🚀 Tech Stack
 
-- **Dark Theme**: Premium dark UI with teal accent color
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile
-- **Interactive Skills Dashboard**: Category-based skill display with smooth animations
-- **Project Showcase**: 7 real-world projects with clear impact statements
-- **Achievement Section**: Highlighting hackathon wins and credentials
-- **Smooth Animations**: 60 FPS performance with meaningful transitions
-- **Accessibility**: Keyboard navigable with proper focus states
-- **Frontend Only**: No backend dependencies, pure HTML/CSS/JS
+- **Framework:** [Next.js](https://nextjs.org/) (App Router) + TypeScript
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **3D Graphics:** [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) & [Three.js](https://threejs.org/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)
+- **Scrolling:** [Lenis](https://studiofreight.github.io/lenis/) (Smooth cinematic scroll)
+- **Icons:** [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
 
-## 🚀 Quick Start
+## 💻 Developer
 
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. That's it! No build process required.
+**Sharika Rajan**
+*Full Stack Software Engineer | MERN & Java (Spring Boot)*
 
-## 📁 File Structure
+Multi-hackathon winner with hands-on experience in building scalable web applications, REST APIs, and microservices architecture.
 
-```
-portfolio/
-├── index.html      # Main HTML structure
-├── styles.css      # All styling and animations
-├── script.js       # Interactive features
-└── README.md       # This file
+## ⚙️ Getting Started
+
+First, install the necessary dependencies:
+
+```bash
+npm install
 ```
 
-## 🛠️ Technologies Used
+Then, run the development server:
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern features, animations, grid, flexbox
-- **Vanilla JavaScript**: No frameworks, pure performance
-- **Google Fonts**: Inter & JetBrains Mono
+```bash
+npm run dev
+```
 
-## 🎨 Design Principles
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Clarity over flash**: Every element serves a purpose
-- **Scannable content**: Information hierarchy optimized for recruiters
-- **Measured expertise**: Realistic skill assessments, no fake percentages
-- **Impact-focused**: Projects described by outcomes, not features
-- **Performance-first**: Optimized animations and lazy loading
+## 🎨 Features
 
-## 📧 Customization
-
-To customize for your own use:
-
-1. **Personal Info**: Update name, role, and tagline in `index.html`
-2. **Projects**: Modify project cards with your own work
-3. **Skills**: Adjust skill categories and levels
-4. **Contact**: Update email, LinkedIn, and GitHub links
-5. **Colors**: Change accent color in `:root` variables in `styles.css`
-
-## 🌐 Deployment
-
-### GitHub Pages
-1. Push to GitHub repository
-2. Go to Settings → Pages
-3. Select main branch
-4. Your site will be live at `username.github.io/repository-name`
-
-### Netlify
-1. Drag and drop the folder to Netlify
-2. Instant deployment
-
-### Vercel
-1. Import repository to Vercel
-2. Deploy with zero configuration
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## ⚡ Performance
-
-- No external dependencies
-- Minimal JavaScript
-- CSS animations (hardware accelerated)
-- Lazy loading for scroll animations
-- Optimized for 60 FPS
-
-## 🎓 Built By
-
-**Sharika Rajan**  
-Full-Stack Developer | 2× Hackathon Winner
-
-- Email: shaarika.rajan@gmail.com
-- GitHub: [@Sharikarajan07](https://github.com/Sharikarajan07)
-- LinkedIn: [linkedin.com/in/sharika-rajan](https://www.linkedin.com/in/sharika-rajan)
-
----
-
-**Built with clarity and purpose** | Frontend Only | January 2026
+- **Custom 3D Scene:** Continuous spinning/distorting 3D mesh background with star fields.
+- **GSAP Scroll Triggers:** Elements elegantly reveal themselves as you scroll through the timeline.
+- **Glassmorphism:** Premium frosted-glass cards with neon cyan & purple glowing accents.
+- **AI Assistant Overlay:** Interactive floating AI chatbot UI.
+- **Custom Cursor:** Custom cursor that tracks interactions nicely.
