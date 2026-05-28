@@ -1,4 +1,6 @@
-"use client";
+﻿const fs = require('fs');
+
+const content = `"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
@@ -7,7 +9,6 @@ import gsap from "gsap";
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMounted, setIsMounted] = useState(false);
   
   // Mouse position for 3D tilt
   const mouseX = useMotionValue(0.5);
@@ -22,11 +23,6 @@ export default function HeroSection() {
   const rotateX = useTransform(smoothY, [0, 1], [15, -15]);
   const rotateY = useTransform(smoothX, [0, 1], [-15, 15]);
   
-  // Parallax layer transforms for stronger 3D depth
-  const parallaxX = useTransform(smoothX, [0, 1], [-30, 30]);
-  const parallaxY = useTransform(smoothY, [0, 1], [30, -30]);
-  const frontZ = useTransform(smoothY, [0, 1], [80, -80]);
-  const midZ = useTransform(smoothY, [0, 1], [40, -40]);
   // Transform values for background parallax
   const bgX = useTransform(smoothX, [0, 1], ["-2%", "2%"]);
   const bgY = useTransform(smoothY, [0, 1], ["-2%", "2%"]);
@@ -35,65 +31,77 @@ export default function HeroSection() {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
     
-    mouseX.set(clientX / innerWidth);
-    mouseY.set(clientY / innerHeight);
+    const x = clientX / innerWidth;
+    const y = clientY / innerHeight;
+    
+    mouseX.set(x);
+    mouseY.set(y);
     setMousePosition({ x: clientX, y: clientY });
   };
 
   useEffect(() => {
+    // Cinematic intro timeline
     const tl = gsap.timeline();
     
-    gsap.set(".hero-text", { opacity: 0, scale: 1.2, filter: "blur(10px)", z: -500 });
+    // Initial state
+    gsap.set(".hero-text", { opacity: 0, scale: 1.5, filter: "blur(20px)", z: -500 });
     gsap.set(".hero-bg-ring", { opacity: 0, scale: 0.5, rotateX: 60 });
     gsap.set(".hero-flare", { opacity: 0, scale: 0 });
+    gsap.set(".hud-element", { opacity: 0, x: -20 });
     
-    tl.to(".hero-bg-ring", { opacity: 0.3, scale: 1, duration: 2.5, ease: "power3.out", stagger: 0.2 }, 0.5);
-    tl.to(".hero-text", { opacity: 1, scale: 1, filter: "blur(0px)", z: 0, duration: 2.5, ease: "expo.out", stagger: 0.15 }, 0.8);
-    tl.to(".hero-flare", { opacity: 1, scale: 1, duration: 2, ease: "power2.out" }, 1.2);
+    // Animate rings
+    tl.to(".hero-bg-ring", {
+      opacity: 0.3,
+      scale: 1,
+      duration: 2.5,
+      ease: "power3.out",
+      stagger: 0.2
+    }, 0.5);
     
-    setIsMounted(true);
+    // Animate text
+    tl.to(".hero-text", {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      z: 0,
+      duration: 3,
+      ease: "expo.out",
+      stagger: 0.15
+    }, 1);
+    
+    // Animate flares
+    tl.to(".hero-flare", {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      ease: "power2.out"
+    }, 1.5);
+    
+    // Animate HUD
+    tl.to(".hud-element", {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.1
+    }, 2.5);
+    
   }, []);
 
   return (
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050816]"
-      style={{ perspective: 1200 }}
+      className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050816] perspective-1000"
     >
-      {/* Navigation Bar */}
-      <motion.nav 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
-        className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-5 flex justify-between items-center backdrop-blur-md bg-[#050816]/50 border-b border-white/5"
-      >
-        <div className="font-black text-2xl tracking-widest text-white">SR<span className="text-cyan-400">.</span></div>
-        <div className="hidden md:flex gap-10 text-xs font-semibold tracking-[0.2em] uppercase text-slate-300">
-          <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
-          <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
-          <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
-          <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
-        </div>
-        <motion.a 
-          href="/resume.pdf"
-          target="_blank"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-6 py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 transition-all"
-        >
-          Resume
-        </motion.a>
-      </motion.nav>
-
       {/* Film Grain overlay */}
       <div className="absolute inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')]"></div>
       
       {/* Cursor Glow */}
       <div 
-        className="absolute w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 to-purple-600/10 rounded-full blur-[100px] pointer-events-none z-0 mix-blend-screen transition-all duration-300 ease-out"
+        className="absolute w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/20 to-purple-600/20 rounded-full blur-[100px] pointer-events-none z-0 mix-blend-screen transition-all duration-300 ease-out"
         style={{
-          transform: `translate(${mousePosition.x - 300}px, ${mousePosition.y - 300}px)`
+          transform: \`translate(\${mousePosition.x - 300}px, \${mousePosition.y - 300}px)\`
         }}
       />
 
@@ -105,8 +113,8 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050816] via-transparent to-[#050816] z-10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.05)_0%,rgba(5,8,22,1)_70%)] z-10" />
         
-        {/* Floating Stars */}
-        {isMounted && [...Array(50)].map((_, i) => (
+        {/* Floating Stars / Dust */}
+        {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-white"
@@ -120,6 +128,7 @@ export default function HeroSection() {
             animate={{
               y: [0, -20, 0],
               opacity: [0.1, 0.8, 0.1],
+              scale: [1, 1.5, 1]
             }}
             transition={{
               duration: Math.random() * 5 + 5,
@@ -150,62 +159,69 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Center Cinematic Flares */}
-      <div className="hero-flare absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[20vh] bg-cyan-400/10 blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen" />
-      <div className="hero-flare absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[10vh] bg-purple-500/20 blur-[80px] rounded-full pointer-events-none z-0 mix-blend-screen" />
+      {/* Center Cinematic Flare */}
+      <div className="hero-flare absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[20vh] bg-cyan-400/20 blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen" />
+      <div className="hero-flare absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[10vh] bg-purple-500/30 blur-[80px] rounded-full pointer-events-none z-0 mix-blend-screen" />
 
-      {/* Main Centered Content */}
-       <div className="z-10 flex flex-col items-center justify-center w-full transform-style-3d mt-20"
-         style={{ transformStyle: 'preserve-3d', perspective: 1200 }}>
+      {/* Main Content */}
+      <div className="z-10 flex flex-col items-center justify-center w-full transform-style-3d perspective-1000">
         
+        {/* Top HUD */}
+        <div className="hud-element mb-12 flex items-center gap-4">
+          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-cyan-500" />
+          <div className="px-4 py-1.5 border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md rounded-sm shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+            <span className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase">
+              // SYSTEM INITIALIZED
+            </span>
+          </div>
+          <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-cyan-500" />
+        </div>
+
         {/* 3D Typography */}
         <motion.div 
           className="relative text-center transform-style-3d cursor-default"
-          style={{ rotateX, rotateY, transformPerspective: 1200 }}
+          style={{ rotateX, rotateY }}
         >
+          {/* Background Glow specific to text */}
           <div className="absolute inset-0 bg-white/5 blur-[100px] rounded-full pointer-events-none" />
 
           <h1 className="hero-text text-[12vw] md:text-[140px] font-black leading-[0.85] tracking-tighter uppercase relative select-none">
-            {/* Front layer - highlights */}
-            <motion.span
+            <span 
               className="block relative text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 drop-shadow-[0_10px_20px_rgba(255,255,255,0.2)]"
-              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)", translateX: parallaxX, translateY: parallaxY, translateZ: frontZ }}
+              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
             >
               SHARIKA
-              <motion.span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-b from-transparent to-slate-900 drop-shadow-none translate-y-3 -z-10 mix-blend-overlay" style={{ translateZ: midZ }}>SHARIKA</motion.span>
-            </motion.span>
+              {/* Fake 3D Extrusion Shadow */}
+              <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-b from-transparent to-slate-900 drop-shadow-none translate-y-3 -z-10 mix-blend-overlay">SHARIKA</span>
+            </span>
           </h1>
 
           <h1 className="hero-text text-[12vw] md:text-[140px] font-black leading-[0.85] tracking-tighter uppercase relative select-none mt-2">
-            <motion.span 
-              className="block relative text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-300 drop-shadow-[0_0_40px_rgba(34,211,238,0.3)]"
-              style={{ translateX: parallaxX, translateY: parallaxY, translateZ: midZ }}
+            <span 
+              className="block relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-[0_0_40px_rgba(0,229,255,0.4)]"
             >
               RAJAN
-              <motion.span className="absolute inset-0 bg-gradient-to-r from-blue-300 via-transparent to-indigo-300 opacity-40 blur-[20px] mix-blend-screen" style={{ translateZ: frontZ }}>RAJAN</motion.span>
-            </motion.span>
+              {/* Glow overlay */}
+              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-transparent to-purple-600 opacity-50 blur-[20px] mix-blend-screen">RAJAN</span>
+            </span>
           </h1>
         </motion.div>
 
-        {/* Roles Subtitle */}
-        <motion.div className="hero-text mt-8 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-          <p className="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-slate-200">
-            Software Engineer <span className="text-cyan-400 mx-2">|</span> Full Stack Developer <span className="text-cyan-400 mx-2">|</span> AI Enthusiast
+        {/* Subtitle */}
+        <motion.div 
+          className="hero-text mt-12 relative flex items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black/20 backdrop-blur-xl px-8 py-3 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+        >
+          <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer_3s_infinite_linear]" />
+          <p className="text-sm md:text-base font-medium tracking-widest uppercase text-slate-300">
+            Full Stack Engineer <span className="text-cyan-400 mx-2">|</span> AI Developer <span className="text-purple-400 mx-2">|</span> MERN & Java
           </p>
         </motion.div>
 
-        {/* The Three Lines */}
-        <motion.p 
-          className="hero-text text-slate-300 text-sm sm:text-base md:text-lg max-w-3xl text-center leading-relaxed mt-8 font-light px-6"
-        >
-          I build immersive AI-powered applications, scalable full stack systems, and futuristic digital experiences using <span className="text-cyan-400 font-medium">MERN Stack</span>, <span className="text-purple-400 font-medium">Java Spring Boot</span>, Machine Learning, and modern web technologies.
-        </motion.p>
-
         {/* Buttons */}
-        <div className="hero-text mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-6 text-center">
+        <div className="hero-text mt-12 flex flex-col sm:flex-row gap-6">
           <motion.a 
             href="#projects"
-            className="group relative px-10 py-4 bg-transparent overflow-hidden rounded-md font-bold tracking-[0.2em] text-xs uppercase"
+            className="group relative px-10 py-5 bg-transparent overflow-hidden rounded-md font-bold tracking-[0.2em] text-xs uppercase"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -223,7 +239,7 @@ export default function HeroSection() {
             href="https://github.com/Sharikarajan07"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative px-10 py-4 bg-[#0a0a0a]/50 backdrop-blur-xl border border-white/10 overflow-hidden rounded-md font-bold tracking-[0.2em] text-xs uppercase text-center"
+            className="group relative px-10 py-5 bg-[#0a0a0a]/50 backdrop-blur-xl border border-white/10 overflow-hidden rounded-md font-bold tracking-[0.2em] text-xs uppercase"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -231,39 +247,39 @@ export default function HeroSection() {
             <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 transform bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100" />
             
             <span className="relative z-10 text-slate-300 group-hover:text-white transition-colors duration-500">
-              GITHUB
-            </span>
-          </motion.a>
-
-          <motion.a 
-            href="https://www.linkedin.com/in/sharika-rajan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-10 py-4 bg-[#0a0a0a]/50 backdrop-blur-xl border border-white/10 overflow-hidden rounded-md font-bold tracking-[0.2em] text-xs uppercase text-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 transform bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100" />
-            
-            <span className="relative z-10 text-slate-300 group-hover:text-white transition-colors duration-500">
-              LINKEDIN
+              GITHUB PROFILE
             </span>
           </motion.a>
         </div>
       </div>
       
-      {/* Scroll Sequencer */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50 z-20 pointer-events-none">
+      {/* Side HUD Elements */}
+      <div className="hud-element absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-8 opacity-40 mix-blend-screen">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <div className="text-[8px] font-mono text-cyan-500 tracking-widest">{`0${i + 1}`}</div>
+            <div className={\`h-[1px] bg-cyan-500/50 \${i === 0 ? 'w-12' : 'w-4'}\`} />
+          </div>
+        ))}
+      </div>
+      
+      <div className="hud-element absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-end gap-2 opacity-40 mix-blend-screen">
+        <div className="w-[1px] h-32 bg-gradient-to-b from-purple-500 to-transparent mb-4" />
+        <span className="text-[10px] font-mono text-purple-400 transform origin-right -rotate-90 translate-x-3 tracking-[0.3em]">
+          DATA_STREAM_ACTIVE
+        </span>
+      </div>
+
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50 z-20">
         <span className="text-[9px] tracking-[0.3em] font-mono text-cyan-400 capitalize">Scroll Sequencer</span>
         <motion.div 
-          className="w-[1px] h-16 bg-gradient-to-b from-cyan-400 via-purple-500 to-transparent"
-          animate={{ height: ["0rem", "4rem", "0rem"], opacity: [0, 1, 0], y: [0, 10, 20] }}
+          className="w-[1px] h-20 bg-gradient-to-b from-cyan-400 via-purple-500 to-transparent"
+          animate={{ height: ["0rem", "5rem", "0rem"], opacity: [0, 1, 0], y: [0, 20, 40] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <style jsx global>{`
+      <style jsx global>{\`
         @keyframes shimmer {
           0% { transform: translateX(-100%) skewX(-15deg); }
           100% { transform: translateX(200%) skewX(-15deg); }
@@ -271,7 +287,10 @@ export default function HeroSection() {
         .transform-style-3d {
           transform-style: preserve-3d;
         }
-      `}</style>
+      \`}</style>
     </section>
   );
 }
+`;
+
+fs.writeFileSync('src/components/HeroSection.tsx', content);

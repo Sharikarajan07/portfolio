@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function ContactSection() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center items-center py-20 px-4 md:px-20 z-10 border-t border-slate-800/50">
+    <section id="contact" className="relative w-full min-h-screen flex flex-col justify-center items-center py-20 px-4 md:px-20 z-10 border-t border-slate-800/50">
       <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 to-transparent pointer-events-none" />
 
       <div className="max-w-4xl w-full text-center mb-16 relative">

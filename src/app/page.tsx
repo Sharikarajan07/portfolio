@@ -12,6 +12,8 @@ import AchievementsSection from '@/components/AchievementsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import AIAssistant from '@/components/AIAssistant';
+import Loader from '@/components/Loader';
+import TerminalMode from '@/components/TerminalMode';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +30,8 @@ export default function Home() {
 
   return (
     <main ref={containerRef} className="relative w-full h-full min-h-screen z-10">
+      <Loader />
+      
       {/* 3D Background Canvas */}
       <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
         <Scene3D />
@@ -46,6 +50,9 @@ export default function Home() {
 
       {/* AI Assistant Chatbot */}
       <AIAssistant />
+
+      {/* Terminal Command Mode */}
+      <TerminalMode />
     </main>
   );
 }

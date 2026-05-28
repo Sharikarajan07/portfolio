@@ -19,22 +19,32 @@ function AnimatedBackground() {
     <group ref={groupRef}>
       <Stars radius={100} depth={50} count={5000} factor={4} saturation={1} fade speed={1.5} />
       
-      {/* Holographic glowing spheres */}
+      {/* Holographic glowing spheres with tech rings */}
       <Float speed={2} rotationIntensity={2} floatIntensity={2} position={[4, 2, -10]}>
-        <Sphere args={[1.5, 64, 64]}>
-          <MeshDistortMaterial
-            color="#a855f7"
-            attach="material"
-            distort={0.4}
-            speed={2}
-            roughness={0.2}
-            metalness={0.8}
-            emissive="#a855f7"
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.8}
-          />
-        </Sphere>
+        <group>
+          <Sphere args={[1.5, 64, 64]}>
+            <MeshDistortMaterial
+              color="#a855f7"
+              attach="material"
+              distort={0.4}
+              speed={2}
+              roughness={0.2}
+              metalness={0.8}
+              emissive="#a855f7"
+              emissiveIntensity={0.5}
+              transparent
+              opacity={0.8}
+            />
+          </Sphere>
+          <mesh rotation={[Math.PI / 3, 0, 0]}>
+            <torusGeometry args={[2.5, 0.02, 16, 100]} />
+            <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={2} />
+          </mesh>
+          <mesh rotation={[0, Math.PI / 4, 0]}>
+            <torusGeometry args={[3, 0.01, 16, 100]} />
+            <meshStandardMaterial color="#a855f7" emissive="#a855f7" emissiveIntensity={1.5} wireframe />
+          </mesh>
+        </group>
       </Float>
 
       <Float speed={3} rotationIntensity={1.5} floatIntensity={2.5} position={[-5, -1, -15]}>

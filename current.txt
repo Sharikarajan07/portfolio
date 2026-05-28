@@ -1,0 +1,171 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+
+const projects = [
+  {
+    title: "Money Manager App",
+    description: "A full-stack personal finance tracker with real-time income/expense logging, enabling users to effortlessly monitor cash flow. Features RESTful CRUD APIs backed by MongoDB for efficient document storage under 100ms query times.",
+    tech: ["React.js", "Node.js", "MongoDB", "Express"],
+    link: "https://money-manager-frontend-sigma-ten.vercel.app/",
+    github: "https://github.com/Sharikarajan07/money-manager-frontend.git",
+    color: "from-emerald-500 to-teal-600",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
+  },
+  {
+    title: "Event Ticketing & Registration System",
+    description: "Architected a microservices-based event booking platform with independently deployable services. Built Spring Boot REST APIs with PostgreSQL data architecture and implemented a QR-based contactless ticket verification workflow.",
+    tech: ["Spring Boot", "Microservices", "PostgreSQL", "QR Verification"],
+    link: "#",
+    github: "https://github.com/Sharikarajan07/NM_Hackathon_Level2.git",
+    color: "from-purple-500 to-pink-600",
+    image: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80"
+  },
+  {
+    title: "VEXTA – Personalized IDP Generator",
+    description: "Architected an AI-driven platform to generate individual development plans from employee skill data. Designed scalable backend APIs with RBAC for secure access and interactive data visualization dashboards for HR managers.",
+    tech: ["AI Integration", "REST API", "RBAC", "Data Visualization"],
+    link: "#",
+    github: "https://github.com/VEXTA-SIH/Vexta_UI.git",
+    color: "from-cyan-500 to-blue-600",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+  }
+];
+
+const moreProjects = [
+  {
+    title: "Travel Explorer",
+    description: "Frontend Development presenting an immersive travel discovery experience using interactive CSS animations and seamlessly structured layouts.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://travel-explorer-ibm-frontendproject.vercel.app/pages/home_discovery.html",
+    github: "https://github.com/Sharikarajan07/Travel_Explorer.git",
+    color: "from-pink-500 to-rose-600",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
+  },
+  {
+    title: "PhishCatcher",
+    description: "Security and Machine Learning project for real-time phishing detection and prevention.",
+    tech: ["Python", "Scikit-learn", "Flask"],
+    link: "#",
+    github: "https://github.com/Sharikarajan07",
+    color: "from-emerald-500 to-teal-600",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
+  },
+  {
+    title: "Communication App",
+    description: "Real-Time instant messaging architecture seamlessly connecting users.",
+    tech: ["React", "Socket.io", "Node.js"],
+    link: "#",
+    github: "https://github.com/Sharikarajan07",
+    color: "from-blue-500 to-indigo-600",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80"
+  },
+  {
+    title: "Online Store",
+    description: "E-Commerce application showcasing complete payment integration and state management.",
+    tech: ["React", "Redux", "PostgreSQL"],
+    link: "#",
+    github: "https://github.com/Sharikarajan07",
+    color: "from-orange-500 to-red-600",
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80"
+  },
+  {
+    title: "LearnSphere",
+    description: "An expanding educational platform designed for interactive learning and streamlined course management.",
+    tech: ["Full-Stack", "Web Technologies"],
+    link: "#",
+    github: "https://github.com/Sharikarajan07/Learnsphere.git",
+    color: "from-violet-500 to-fuchsia-600",
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80"
+  }
+];
+
+export default function ProjectsSection() {
+  const [showMore, setShowMore] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  
+  const allProjects = [...projects, ...moreProjects];
+  const displayedProjects = showMore ? allProjects : projects;
+  
+  return (
+    <section id="projects" ref={containerRef} className="relative w-full min-h-screen py-32 px-4 md:px-20 z-10 flex flex-col items-center">
+      <div className="max-w-7xl w-full flex flex-col items-center">
+        <h2 className="text-5xl md:text-7xl font-black mb-16 text-center uppercase tracking-tighter">
+          <span className="text-white">Selected</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Works</span>
+        </h2>
+        
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-20">
+          <AnimatePresence>
+          {displayedProjects.map((project, index) => (
+            <motion.div 
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5 }}
+              key={project.title}
+              style={{ y: index < projects.length && index % 2 !== 0 ? y : 0 }}
+              className="relative group rounded-2xl overflow-hidden glass-panel border border-slate-700/50 hover:border-cyan-500/50 transition-colors duration-500 min-h-[400px]"
+            >
+              {/* Project Image */}
+              <div className="h-48 w-full relative overflow-hidden group-hover:scale-105 transition-transform duration-700">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-in-out" 
+                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-30 mix-blend-overlay z-10`} />
+              </div>
+
+              <div className="p-8 relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-slate-400 mb-6 leading-relaxed line-clamp-3 text-sm">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.tech.map((t, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-slate-800/80 rounded-full text-xs font-mono text-cyan-300 border border-slate-700">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="flex items-center gap-4 absolute bottom-8 left-8">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-slate-800 text-white hover:bg-white hover:text-black transition-colors duration-300">
+                    <FaGithub size={20} />
+                  </a>
+                  <a href={project.link} className="p-2 rounded-full bg-slate-800 text-white hover:bg-cyan-400 hover:text-black transition-colors duration-300">
+                    <ExternalLink size={20} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.div layout className="mt-20">
+          <button 
+            onClick={() => setShowMore(!showMore)}
+            className="px-8 py-4 bg-slate-900/50 backdrop-blur-md rounded-full font-bold tracking-wider text-sm border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all duration-300"
+          >
+            {showMore ? "SHOW LESS PROJECTS" : "SHOW MORE PROJECTS"}
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+

@@ -1,4 +1,6 @@
-"use client";
+﻿const fs = require('fs');
+
+const content = `"use client";
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -49,24 +51,14 @@ const allProjects = [
     category: "Blockchain"
   },
   {
-    title: "Travel Explorer",
-    description: "Frontend Development presenting an immersive travel discovery experience using interactive CSS animations and seamlessly structured layouts.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://travel-explorer-ibm-frontendproject.vercel.app/pages/home_discovery.html",
-    github: "https://github.com/Sharikarajan07/Travel_Explorer.git",
-    color: "from-pink-500 to-rose-600",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
-    category: "Frontend"
-  },
-  {
     title: "Globe Trotter",
     description: "An interactive travel application offering deep insights and immersive navigation across various destinations worldwide.",
     tech: ["React.js", "Frontend UI", "API Integration"],
     link: "https://odoo-xsns.vercel.app/",
     github: "https://github.com/Sharikarajan07/OdooXSNS.git",
-    color: "from-purple-400 to-fuchsia-500",
+    color: "from-pink-500 to-rose-600",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    category: "Fullstack"
+    category: "Frontend"
   },
   {
     title: "Chennai Artisanal DApp",
@@ -105,7 +97,7 @@ const allProjects = [
     link: "#",
     github: "https://github.com/Sharikarajan07/Moving-Object-Detection.git",
     color: "from-slate-400 to-slate-600",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=800&q=80",
     category: "AI/ML"
   },
   {
@@ -145,7 +137,7 @@ const allProjects = [
     link: "#",
     github: "https://github.com/Sharikarajan07/AI-ChatBot.git",
     color: "from-cyan-400 to-blue-500",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
     category: "AI/ML"
   },
   {
@@ -217,7 +209,7 @@ export default function ProjectsSection() {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 border ${activeCategory === cat ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-slate-900/50 border-slate-700 text-slate-400 hover:border-slate-500'}`}
+              className={\`px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 border \${activeCategory === cat ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'bg-slate-900/50 border-slate-700 text-slate-400 hover:border-slate-500'}\`}
             >
               {cat}
             </button>
@@ -244,7 +236,7 @@ export default function ProjectsSection() {
                   alt={project.title} 
                   className="w-full h-full object-cover transition-transform duration-700 ease-in-out" 
                 />
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-30 mix-blend-overlay z-10`} />
+                <div className={\`absolute inset-0 bg-gradient-to-br \${project.color} opacity-30 mix-blend-overlay z-10\`} />
                 
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-xs font-bold tracking-wider text-white">
@@ -297,3 +289,6 @@ export default function ProjectsSection() {
     </section>
   );
 }
+`;
+
+fs.writeFileSync('src/components/ProjectsSection.tsx', content);
