@@ -22,11 +22,6 @@ export default function HeroSection() {
   const rotateX = useTransform(smoothY, [0, 1], [15, -15]);
   const rotateY = useTransform(smoothX, [0, 1], [-15, 15]);
   
-  // Parallax layer transforms for stronger 3D depth
-  const parallaxX = useTransform(smoothX, [0, 1], [-30, 30]);
-  const parallaxY = useTransform(smoothY, [0, 1], [30, -30]);
-  const frontZ = useTransform(smoothY, [0, 1], [80, -80]);
-  const midZ = useTransform(smoothY, [0, 1], [40, -40]);
   // Transform values for background parallax
   const bgX = useTransform(smoothX, [0, 1], ["-2%", "2%"]);
   const bgY = useTransform(smoothY, [0, 1], ["-2%", "2%"]);
@@ -58,7 +53,7 @@ export default function HeroSection() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050816]"
+      className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-transparent"
       style={{ perspective: 1200 }}
     >
       {/* Navigation Bar */}
@@ -66,7 +61,7 @@ export default function HeroSection() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
-        className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-5 flex justify-between items-center backdrop-blur-md bg-[#050816]/50 border-b border-white/5"
+        className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-5 flex justify-between items-center backdrop-blur-md bg-slate-950/50 border-b border-white/5"
       >
         <div className="font-black text-2xl tracking-widest text-white">SR<span className="text-cyan-400">.</span></div>
         <div className="hidden md:flex gap-10 text-xs font-semibold tracking-[0.2em] uppercase text-slate-300">
@@ -102,8 +97,8 @@ export default function HeroSection() {
         className="absolute inset-[-5%] w-[110%] h-[110%] z-0"
         style={{ x: bgX, y: bgY }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050816] via-transparent to-[#050816] z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.05)_0%,rgba(5,8,22,1)_70%)] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-transparent z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.08)_0%,rgba(5,8,22,0)_80%)] z-10" />
         
         {/* Floating Stars */}
         {isMounted && [...Array(50)].map((_, i) => (
@@ -161,29 +156,27 @@ export default function HeroSection() {
         {/* 3D Typography */}
         <motion.div 
           className="relative text-center transform-style-3d cursor-default"
-          style={{ rotateX, rotateY, transformPerspective: 1200 }}
+          style={{ rotateX, rotateY }}
         >
           <div className="absolute inset-0 bg-white/5 blur-[100px] rounded-full pointer-events-none" />
 
           <h1 className="hero-text text-[12vw] md:text-[140px] font-black leading-[0.85] tracking-tighter uppercase relative select-none">
-            {/* Front layer - highlights */}
-            <motion.span
+            <span 
               className="block relative text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 drop-shadow-[0_10px_20px_rgba(255,255,255,0.2)]"
-              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)", translateX: parallaxX, translateY: parallaxY, translateZ: frontZ }}
+              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
             >
               SHARIKA
-              <motion.span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-b from-transparent to-slate-900 drop-shadow-none translate-y-3 -z-10 mix-blend-overlay" style={{ translateZ: midZ }}>SHARIKA</motion.span>
-            </motion.span>
+              <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-b from-transparent to-slate-900 drop-shadow-none translate-y-3 -z-10 mix-blend-overlay">SHARIKA</span>
+            </span>
           </h1>
 
           <h1 className="hero-text text-[12vw] md:text-[140px] font-black leading-[0.85] tracking-tighter uppercase relative select-none mt-2">
-            <motion.span 
+            <span 
               className="block relative text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-300 drop-shadow-[0_0_40px_rgba(34,211,238,0.3)]"
-              style={{ translateX: parallaxX, translateY: parallaxY, translateZ: midZ }}
             >
               RAJAN
-              <motion.span className="absolute inset-0 bg-gradient-to-r from-blue-300 via-transparent to-indigo-300 opacity-40 blur-[20px] mix-blend-screen" style={{ translateZ: frontZ }}>RAJAN</motion.span>
-            </motion.span>
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-300 via-transparent to-indigo-300 opacity-40 blur-[20px] mix-blend-screen">RAJAN</span>
+            </span>
           </h1>
         </motion.div>
 
