@@ -105,7 +105,7 @@ export default function TerminalMode() {
                 </div>
               </div>
               
-              <div className="p-4 font-mono text-sm h-80 overflow-y-auto flex flex-col">
+              <div data-lenis-prevent className="p-4 font-mono text-sm h-80 overflow-y-auto flex flex-col">
                 {output.map((line, i) => (
                   <div key={i} className={`${line.startsWith(">") ? "text-white" : "text-cyan-400"} mb-1`}>
                     {line}
